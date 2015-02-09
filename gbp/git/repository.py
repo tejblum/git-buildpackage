@@ -96,8 +96,10 @@ class GitRepository(object):
                 raise GitRepositoryError("No Git repository at '%s': '%s'" % (self.path, out))
         except GitRepositoryError:
             raise # We already have a useful error message
+        except BaseException as er:
+            raise GitRepositoryError("No Git repoSItory at '%s' (%s)" % (self.path, str(er)))
         except:
-            raise GitRepositoryError("No Git repository at '%s'" % self.path)
+            raise GitRepositoryError("No Git repoSitory at '%s'" % self.path)
         self._check_bare()
 
     @staticmethod

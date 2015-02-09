@@ -404,8 +404,8 @@ def main(argv):
     try:
         try:
             repo = DebianGitRepository('.')
-        except GitRepositoryError:
-            raise GbpError("%s is not a git repository" % (os.path.abspath('.')))
+        except GitRepositoryError as err:
+            raise GbpError("%s is not a git repository (%s)" % (os.path.abspath('.'), str(err)))
 
         try:
             branch = repo.get_branch()
